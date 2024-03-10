@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class GageApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(GageApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(GageApplication.class, args);
+    }
 
 }
