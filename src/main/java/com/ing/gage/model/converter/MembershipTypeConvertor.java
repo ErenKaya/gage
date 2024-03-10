@@ -1,6 +1,5 @@
 package com.ing.gage.model.converter;
 
-import com.ing.gage.model.enums.transfer.TransferType;
 import com.ing.gage.model.enums.user.MemberShipType;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;

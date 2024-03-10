@@ -1,6 +1,5 @@
 package com.ing.gage.model.converter;
 
-import com.ing.gage.model.enums.payment.PaymentType;
 import com.ing.gage.model.enums.transfer.TransferType;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;

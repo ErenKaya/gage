@@ -1,7 +1,6 @@
 package com.ing.gage.model.converter;
 
 import com.ing.gage.model.enums.asset.AssetType;
-import com.ing.gage.model.enums.notification.NotificationType;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 

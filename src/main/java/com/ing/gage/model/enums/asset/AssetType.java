@@ -1,7 +1,5 @@
 package com.ing.gage.model.enums.asset;
 
-import com.ing.gage.model.enums.notification.NotificationType;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;

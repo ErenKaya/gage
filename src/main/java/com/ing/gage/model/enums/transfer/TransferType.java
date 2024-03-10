@@ -1,8 +1,5 @@
 package com.ing.gage.model.enums.transfer;
 
-import com.ing.gage.model.enums.notification.NotificationType;
-import com.ing.gage.model.enums.payment.PaymentType;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
