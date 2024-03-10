@@ -5,12 +5,15 @@ import com.ing.gage.model.entities.user.DigitalUserConfig;
 import com.ing.gage.model.enums.user.MembershipType;
 import com.ing.gage.model.service.UserConfigService;
 import com.ing.gage.repositories.user.UserConfigRepository;
-import jakarta.validation.constraints.Null;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserConfigServiceImpl implements UserConfigService {
-    private UserConfigRepository userConfigRepository;
+    private final UserConfigRepository userConfigRepository;
+
+    public UserConfigServiceImpl(UserConfigRepository userConfigRepository) {
+        this.userConfigRepository = userConfigRepository;
+    }
 
     @Override
     public Boolean checkUserRight(UserDto userDto, MembershipType memberShipForContinue) {
