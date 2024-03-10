@@ -1,11 +1,12 @@
 package com.ing.gage.model.entities.user;
 
-import com.ing.gage.model.enums.membership.MemberShipType;
+import com.ing.gage.model.entities.common.Audit;
+import com.ing.gage.model.enums.user.MemberShipType;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "user_config")
-public class UserConfig {
+public class UserConfig extends Audit {
 
     @Id
     @Column
