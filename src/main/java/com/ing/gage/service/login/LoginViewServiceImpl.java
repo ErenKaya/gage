@@ -19,7 +19,7 @@ public class LoginViewServiceImpl implements LoginViewService {
 
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
-        DigitalUser user = userRepository.findByIdentityOrderByIdentityAsc(loginRequest.getIdentity());
+        DigitalUser user = userRepository.findByIdentity(loginRequest.getIdentity()).orElse(null);
 
         if (checkUserIsNotProperForLogin(user, loginRequest)) {
             return this.createEmptyResponse();
