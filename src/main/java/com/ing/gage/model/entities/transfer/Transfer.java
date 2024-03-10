@@ -2,7 +2,7 @@ package com.ing.gage.model.entities.transfer;
 
 import com.ing.gage.model.entities.asset.Asset;
 import com.ing.gage.model.entities.transfer.payment.Payment;
-import com.ing.gage.model.entities.user.User;
+import com.ing.gage.model.entities.user.DigitalUser;
 import com.ing.gage.model.enums.transfer.TransferType;
 import jakarta.persistence.*;
 
@@ -20,7 +20,7 @@ public class Transfer {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id")
-    private User clientId;
+    private DigitalUser clientId;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "asset_id")
@@ -32,6 +32,7 @@ public class Transfer {
 
     private TransferType type;
 
+    @Column(name = "transfer_date")
     private OffsetDateTime transferDate;
 
 }

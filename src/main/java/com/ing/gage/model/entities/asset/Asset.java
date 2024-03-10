@@ -1,7 +1,7 @@
 package com.ing.gage.model.entities.asset;
 
 import com.ing.gage.model.entities.common.Audit;
-import com.ing.gage.model.entities.user.User;
+import com.ing.gage.model.entities.user.DigitalUser;
 import com.ing.gage.model.enums.asset.AssetType;
 import jakarta.persistence.*;
 
@@ -15,7 +15,7 @@ public class Asset extends Audit {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    private User user;
+    private DigitalUser digitalUser;
 
     private AssetType type;
 
@@ -34,12 +34,12 @@ public class Asset extends Audit {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public DigitalUser getUser() {
+        return digitalUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(DigitalUser digitalUser) {
+        this.digitalUser = digitalUser;
     }
 
     public AssetType getType() {

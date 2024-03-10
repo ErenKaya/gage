@@ -4,8 +4,8 @@ import com.ing.gage.model.entities.common.Audit;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "user")
-public class User extends Audit {
+@Table(name = "digital_user")
+public class DigitalUser extends Audit {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.AUTO)

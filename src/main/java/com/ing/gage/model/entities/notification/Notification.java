@@ -1,6 +1,6 @@
 package com.ing.gage.model.entities.notification;
 
-import com.ing.gage.model.entities.user.User;
+import com.ing.gage.model.entities.user.DigitalUser;
 import com.ing.gage.model.enums.notification.NotificationType;
 import jakarta.persistence.*;
 
@@ -16,7 +16,7 @@ public class Notification {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    private User user;
+    private DigitalUser digitalUser;
 
     private String title;
 

@@ -2,7 +2,7 @@ package com.ing.gage.model.entities.heritage;
 
 import com.ing.gage.model.entities.asset.Asset;
 import com.ing.gage.model.entities.common.Audit;
-import com.ing.gage.model.entities.user.User;
+import com.ing.gage.model.entities.user.DigitalUser;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,12 +17,12 @@ public class Heritage extends Audit {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "digital_owner_user_id")
-    private User digitalOwner;
+    private DigitalUser digitalOwner;
 
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "custodian_user_id")
-    private User custodianUser;
+    private DigitalUser custodianDigitalUser;
 
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -41,20 +41,20 @@ public class Heritage extends Audit {
         this.id = id;
     }
 
-    public User getDigitalOwner() {
+    public DigitalUser getDigitalOwner() {
         return digitalOwner;
     }
 
-    public void setDigitalOwner(User digitalOwner) {
+    public void setDigitalOwner(DigitalUser digitalOwner) {
         this.digitalOwner = digitalOwner;
     }
 
-    public User getCustodianUser() {
-        return custodianUser;
+    public DigitalUser getCustodianUser() {
+        return custodianDigitalUser;
     }
 
-    public void setCustodianUser(User custodianUser) {
-        this.custodianUser = custodianUser;
+    public void setCustodianUser(DigitalUser custodianDigitalUser) {
+        this.custodianDigitalUser = custodianDigitalUser;
     }
 
     public Asset getAsset() {
