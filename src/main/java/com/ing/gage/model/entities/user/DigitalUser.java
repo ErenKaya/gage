@@ -14,6 +14,7 @@ public class DigitalUser extends Audit {
 
     private String name;
 
+    @Column(unique = true)
     private Long identity;
 
     private String password;
