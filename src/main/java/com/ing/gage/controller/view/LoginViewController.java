@@ -1,8 +1,9 @@
 package com.ing.gage.controller.view;
 
 import com.ing.gage.model.dtos.login.CreateUserRequest;
+import com.ing.gage.model.dtos.login.LoginResponse;
 import com.ing.gage.model.dtos.login.LoginRequest;
-import com.ing.gage.service.login.LoginViewService;
+import com.ing.gage.model.service.LoginViewService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +22,7 @@ public class LoginViewController {
 
 
     @PostMapping(path = "login/v1", produces = "application/json")
-    public Boolean login(@RequestBody @Valid LoginRequest loginRequest) {
+    public LoginResponse login(@RequestBody @Valid LoginRequest loginRequest) {
         return loginViewService.login(loginRequest);
     }
 
