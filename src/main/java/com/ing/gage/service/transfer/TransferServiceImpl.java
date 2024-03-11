@@ -1,13 +1,21 @@
 package com.ing.gage.service.transfer;
 
+import com.ing.gage.model.dtos.asset.list.DigitalUserDto;
+import com.ing.gage.model.dtos.notification.NotificationForInternalUserRequest;
 import com.ing.gage.model.dtos.transfer.create.AssetDto;
 import com.ing.gage.model.dtos.transfer.create.CreateTransferRequest;
 import com.ing.gage.model.dtos.transfer.create.CreateTransferResponse;
 import com.ing.gage.model.dtos.transfer.create.PaymentDto;
+import com.ing.gage.model.dtos.transfer.get.GetTransferAssetDto;
+import com.ing.gage.model.dtos.transfer.get.GetTransferPaymentDto;
+import com.ing.gage.model.dtos.transfer.get.GetTransferResponse;
 import com.ing.gage.model.entities.asset.Asset;
+import com.ing.gage.model.entities.notification.NotificationForExternalRequest;
 import com.ing.gage.model.entities.transfer.Transfer;
 import com.ing.gage.model.entities.transfer.payment.Payment;
 import com.ing.gage.model.entities.user.DigitalUser;
+import com.ing.gage.model.enums.notification.NotificationType;
+import com.ing.gage.model.service.NotificationService;
 import com.ing.gage.model.service.TransferService;
 import com.ing.gage.repositories.asset.AssetRepository;
 import com.ing.gage.repositories.transfer.TransferRepository;
@@ -16,6 +24,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class TransferServiceImpl implements TransferService {
@@ -26,17 +35,51 @@ public class TransferServiceImpl implements TransferService {
 
     private final UserRepository userRepository;
 
-    public TransferServiceImpl(TransferRepository transferRepository, AssetRepository assetRepository, UserRepository userRepository) {
+    private final NotificationService notificationService;
+
+    public TransferServiceImpl(TransferRepository transferRepository, AssetRepository assetRepository, UserRepository userRepository, NotificationService notificationService) {
         this.transferRepository = transferRepository;
         this.assetRepository = assetRepository;
         this.userRepository = userRepository;
+        this.notificationService = notificationService;
     }
 
     @Override
     public CreateTransferResponse create(CreateTransferRequest request) {
         Transfer transfer = this.createTransfer(request);
         Transfer savedTransfer = this.transferRepository.save(transfer);
+        Optional<DigitalUser> userOptional = this.userRepository.findByMail(request.getConsumerMail());
+        if (userOptional.isPresent()) {
+            notificationService.notifyUser(this.createNotifyRequest(savedTransfer, userOptional.get()));
+        } else {
+            notificationService.notifyUser(this.createNotifyForExternalUser(savedTransfer));
+        }
+
         return this.createTransferResponse(savedTransfer);
+    }
+
+    private NotificationForExternalRequest createNotifyForExternalUser(Transfer savedTransfer) {
+        return new NotificationForExternalRequest(getTitle(), getContent(savedTransfer), NotificationType.IMPORTANT);
+    }
+
+
+    private NotificationForInternalUserRequest createNotifyRequest(Transfer savedTransfer, DigitalUser digitalUser) {
+        return new NotificationForInternalUserRequest(new DigitalUserDto(digitalUser.getId()), getTitle(), getContent(savedTransfer), NotificationType.IMPORTANT);
+
+    }
+
+    private String getContent(Transfer savedTransfer) {
+        return String.format("Your order number %d has been placed, please visit http://localhost:8080/api/transfer/get/%d to purchase", savedTransfer.getId(), savedTransfer.getId());
+    }
+
+    private String getTitle() {
+        return "Order Created";
+    }
+
+    @Override
+    public GetTransferResponse get(Long transferId) {
+        Transfer transfer = this.transferRepository.findById(transferId).orElseThrow();
+        return new GetTransferResponse(new GetTransferAssetDto(transfer.getAsset().getCreated(), transfer.getAsset().getUpdated(), transfer.getAsset().getId(), transfer.getAsset().getType(), transfer.getAsset().getName()), new GetTransferPaymentDto(transfer.getPayment().getId(), transfer.getPayment().getAmount(), transfer.getPayment().getType()), transfer.getType());
     }
 
     private CreateTransferResponse createTransferResponse(Transfer savedTransfer) {
@@ -46,9 +89,10 @@ public class TransferServiceImpl implements TransferService {
     private Transfer createTransfer(CreateTransferRequest request) {
         Transfer transfer = new Transfer();
         Asset asset = this.assetRepository.findById(request.getAsset().getId()).orElseThrow();
-        DigitalUser client = this.userRepository.findById(request.getClientId().getId()).orElseThrow();
+        DigitalUser client = this.userRepository.findById(request.getBroker().getId()).orElseThrow();
         transfer.setAsset(asset);
-        transfer.setClientId(client);
+        transfer.setBroker(client);
+        transfer.setConsumerMail(request.getConsumerMail());
         transfer.setTransferDate(this.createTransferDate(request.getTransferDate()));
         Payment payment = new Payment();
         payment.setAmount(request.getPayment().getAmount());

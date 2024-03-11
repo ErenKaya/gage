@@ -14,10 +14,12 @@ import java.time.OffsetDateTime;
  */
 @Value
 public class CreateTransferRequest implements Serializable {
-    DigitalUserDto clientId;
+    DigitalUserDto broker;
     CreateTransferAsset asset;
     PaymentSellerDto payment;
     @NotNull(message = "Transfer type must be filled")
     TransferType type;
     OffsetDateTime transferDate;
+    String consumerMail;
+
 }

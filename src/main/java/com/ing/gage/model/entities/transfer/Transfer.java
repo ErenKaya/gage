@@ -20,7 +20,7 @@ public class Transfer {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id")
-    private DigitalUser clientId;
+    private DigitalUser broker;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "asset_id")
@@ -35,6 +35,8 @@ public class Transfer {
     @Column(name = "transfer_date")
     private OffsetDateTime transferDate;
 
+    private String consumerMail;
+
 
     public Long getId() {
         return id;
@@ -44,12 +46,12 @@ public class Transfer {
         this.id = id;
     }
 
-    public DigitalUser getClientId() {
-        return clientId;
+    public DigitalUser getBroker() {
+        return broker;
     }
 
-    public void setClientId(DigitalUser clientId) {
-        this.clientId = clientId;
+    public void setBroker(DigitalUser broker) {
+        this.broker = broker;
     }
 
     public Asset getAsset() {
@@ -82,5 +84,14 @@ public class Transfer {
 
     public void setTransferDate(OffsetDateTime transferDate) {
         this.transferDate = transferDate;
+    }
+
+
+    public String getConsumerMail() {
+        return consumerMail;
+    }
+
+    public void setConsumerMail(String consumerMail) {
+        this.consumerMail = consumerMail;
     }
 }

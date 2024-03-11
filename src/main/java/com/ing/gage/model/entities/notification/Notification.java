@@ -23,4 +23,44 @@ public class Notification {
     private String content;
 
     private NotificationType type;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public DigitalUser getDigitalUser() {
+        return digitalUser;
+    }
+
+    public void setDigitalUser(DigitalUser digitalUser) {
+        this.digitalUser = digitalUser;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public NotificationType getType() {
+        return type;
+    }
+
+    public void setType(NotificationType type) {
+        this.type = type;
+    }
 }
