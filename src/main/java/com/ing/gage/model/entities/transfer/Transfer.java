@@ -35,4 +35,52 @@ public class Transfer {
     @Column(name = "transfer_date")
     private OffsetDateTime transferDate;
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public DigitalUser getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(DigitalUser clientId) {
+        this.clientId = clientId;
+    }
+
+    public Asset getAsset() {
+        return asset;
+    }
+
+    public void setAsset(Asset asset) {
+        this.asset = asset;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+
+    public TransferType getType() {
+        return type;
+    }
+
+    public void setType(TransferType type) {
+        this.type = type;
+    }
+
+    public OffsetDateTime getTransferDate() {
+        return transferDate;
+    }
+
+    public void setTransferDate(OffsetDateTime transferDate) {
+        this.transferDate = transferDate;
+    }
 }
