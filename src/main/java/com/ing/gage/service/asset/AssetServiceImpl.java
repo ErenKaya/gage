@@ -4,6 +4,7 @@ import com.ing.gage.model.dtos.asset.CreateAssetRequest;
 import com.ing.gage.model.dtos.asset.CreatedAsset;
 import com.ing.gage.model.dtos.asset.list.AssetListRequest;
 import com.ing.gage.model.dtos.asset.list.AssetListResponse;
+import com.ing.gage.model.dtos.asset.list.DigitalUserDto;
 import com.ing.gage.model.dtos.heritage.OwnerUserDto;
 import com.ing.gage.model.entities.asset.Asset;
 import com.ing.gage.model.entities.user.DigitalUser;
@@ -39,7 +40,7 @@ public class AssetServiceImpl implements AssetService {
     }
 
     private CreatedAsset createAssetResponse(Asset savedAsset) {
-        return new CreatedAsset(savedAsset.getCreated(), savedAsset.getUpdated(), savedAsset.getId(), new OwnerUserDto(savedAsset.getUser().getId(), savedAsset.getUser().getName()), savedAsset.getType(), savedAsset.getName());
+        return new CreatedAsset(savedAsset.getCreated(), savedAsset.getUpdated(), savedAsset.getId(), new DigitalUserDto(savedAsset.getUser().getId()), savedAsset.getType(), savedAsset.getName());
     }
 
     private Asset createAssetFromRequest(CreateAssetRequest request) {

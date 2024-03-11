@@ -10,7 +10,6 @@ import java.io.Serializable;
  */
 @Value
 public class CreateHeritageRequest implements Serializable {
-    Long id;
     DigitalUserDto digitalOwner;
     CreatedHeritageCustodian custodianDigitalUser;
     HeritageCreateAssetDto asset;

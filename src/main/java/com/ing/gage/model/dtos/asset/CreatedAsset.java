@@ -1,5 +1,6 @@
 package com.ing.gage.model.dtos.asset;
 
+import com.ing.gage.model.dtos.asset.list.DigitalUserDto;
 import com.ing.gage.model.dtos.heritage.OwnerUserDto;
 import com.ing.gage.model.enums.asset.AssetType;
 import lombok.Value;
@@ -15,7 +16,7 @@ public class CreatedAsset implements Serializable {
     OffsetDateTime created;
     OffsetDateTime updated;
     Long id;
-    OwnerUserDto digitalUser;
+    DigitalUserDto digitalUser;
     AssetType type;
     String name;
 }

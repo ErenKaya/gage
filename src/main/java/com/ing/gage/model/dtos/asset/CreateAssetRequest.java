@@ -1,5 +1,6 @@
 package com.ing.gage.model.dtos.asset;
 
+import com.ing.gage.model.dtos.asset.list.DigitalUserDto;
 import com.ing.gage.model.dtos.heritage.OwnerUserDto;
 import com.ing.gage.model.enums.asset.AssetType;
 import jakarta.validation.constraints.NotBlank;
@@ -14,7 +15,7 @@ import java.io.Serializable;
  */
 @Value
 public class CreateAssetRequest implements Serializable {
-    OwnerUserDto digitalUser;
+    DigitalUserDto digitalUser;
     @NotNull(message = "AssetType must be filled")
     AssetType type;
     @NotNull(message = "Asset name must be filled")
