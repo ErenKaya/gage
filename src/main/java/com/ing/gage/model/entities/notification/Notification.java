@@ -5,7 +5,7 @@ import com.ing.gage.model.enums.notification.NotificationType;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "transfer")
+@Table(name = "notification")
 public class Notification {
 
     @Id

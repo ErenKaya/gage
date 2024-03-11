@@ -35,6 +35,7 @@ public class Transfer {
     @Column(name = "transfer_date")
     private OffsetDateTime transferDate;
 
+    @Column(name = "consumer_mail")
     private String consumerMail;
 
 
