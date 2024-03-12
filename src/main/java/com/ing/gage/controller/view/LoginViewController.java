@@ -21,7 +21,7 @@ public class LoginViewController {
     }
 
 
-    @PostMapping(path = "login/v1", produces = "application/json")
+    @PostMapping(path = "login/v1")
     public LoginResponse login(@RequestBody @Valid LoginRequest loginRequest) {
         return loginViewService.login(loginRequest);
     }
