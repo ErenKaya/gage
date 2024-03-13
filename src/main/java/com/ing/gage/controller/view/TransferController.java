@@ -26,10 +26,5 @@ public class TransferController {
         return transferService.create(createRequest);
     }
 
-    @GetMapping(path = "get/{value}", produces = "application/json")
-    public GetTransferResponse get(@RequestBody @PathVariable("value") Long transferId) {
-        return transferService.get(transferId);
-    }
-
 
 }

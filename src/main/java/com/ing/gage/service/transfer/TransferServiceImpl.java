@@ -69,18 +69,14 @@ public class TransferServiceImpl implements TransferService {
     }
 
     private String getContent(Transfer savedTransfer) {
-        return String.format("Your order number %d has been placed, please visit http://localhost:8080/api/transfer/get/%d to purchase", savedTransfer.getId(), savedTransfer.getId());
+        return String.format("Your order number %d has been placed, please visit http://localhost:8080/payment.html?paymentId=%d to purchase", savedTransfer.getPayment().getId(), savedTransfer.getPayment().getId());
     }
 
     private String getTitle() {
         return "Order Created";
     }
 
-    @Override
-    public GetTransferResponse get(Long transferId) {
-        Transfer transfer = this.transferRepository.findById(transferId).orElseThrow();
-        return new GetTransferResponse(new GetTransferAssetDto(transfer.getAsset().getCreated(), transfer.getAsset().getUpdated(), transfer.getAsset().getId(), transfer.getAsset().getType(), transfer.getAsset().getName()), new GetTransferPaymentDto(transfer.getPayment().getId(), transfer.getPayment().getAmount(), transfer.getPayment().getType()), transfer.getType());
-    }
+
 
     private CreateTransferResponse createTransferResponse(Transfer savedTransfer) {
         return new CreateTransferResponse(savedTransfer.getId(), new AssetDto(savedTransfer.getAsset().getId(), savedTransfer.getAsset().getType(), savedTransfer.getAsset().getName()), new PaymentDto(savedTransfer.getPayment().getId(), savedTransfer.getPayment().getAmount(), savedTransfer.getPayment().getType(), savedTransfer.getPayment().getStatus()), savedTransfer.getType(), savedTransfer.getTransferDate());

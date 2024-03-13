@@ -11,7 +11,5 @@ import java.io.Serializable;
  */
 @Value
 public class GetTransferResponse implements Serializable {
-    GetTransferAssetDto asset;
     GetTransferPaymentDto payment;
-    TransferType type;
 }
