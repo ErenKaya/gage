@@ -5,6 +5,7 @@ import com.ing.gage.model.dtos.heritage.create.CreateHeritageRequest;
 import com.ing.gage.model.dtos.heritage.create.CreatedHeritage;
 import com.ing.gage.model.dtos.heritage.get.GetHeritageRequest;
 import com.ing.gage.model.dtos.heritage.list.HeritageListRequest;
+import com.ing.gage.model.dtos.heritage.list.HeritageListResponse;
 import com.ing.gage.model.service.HeritageService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +26,7 @@ public class HeritageViewController {
     }
 
     @PostMapping(path = "list/v1", produces = "application/json")
-    public List<HeritageDTO> list(@RequestBody @Valid HeritageListRequest loginRequest) {
+    public HeritageListResponse list(@RequestBody @Valid HeritageListRequest loginRequest) {
         return heritageService.getHeritageListByOwnerUser(loginRequest);
     }
 
