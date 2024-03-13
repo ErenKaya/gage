@@ -23,6 +23,7 @@ import com.ing.gage.repositories.user.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -82,6 +83,12 @@ public class TransferServiceImpl implements TransferService {
         return new GetTransferResponse(new GetTransferAssetDto(transfer.getAsset().getCreated(), transfer.getAsset().getUpdated(), transfer.getAsset().getId(), transfer.getAsset().getType(), transfer.getAsset().getName()), new GetTransferPaymentDto(transfer.getPayment().getId(), transfer.getPayment().getAmount(), transfer.getPayment().getType()), transfer.getType());
     }
 
+    @Override
+    public List<GetTransferResponse> getTransferByTransferId(Long transferId) {
+        DigitalUser user = this.userRepository.findById(transferId).orElseThrow(NullPointerException::new);
+        return this.transferRepository.findByTransferId(user.getId()).stream().map(this::createDTO).toList();
+    }
+
     private CreateTransferResponse createTransferResponse(Transfer savedTransfer) {
         return new CreateTransferResponse(savedTransfer.getId(), new AssetDto(savedTransfer.getAsset().getId(), savedTransfer.getAsset().getType(), savedTransfer.getAsset().getName()), new PaymentDto(savedTransfer.getPayment().getId(), savedTransfer.getPayment().getAmount(), savedTransfer.getPayment().getType(), savedTransfer.getPayment().getStatus()), savedTransfer.getType(), savedTransfer.getTransferDate());
     }
@@ -103,5 +110,9 @@ public class TransferServiceImpl implements TransferService {
 
     private OffsetDateTime createTransferDate(OffsetDateTime transferDate) {
         return Objects.nonNull(transferDate) ? transferDate : OffsetDateTime.now();
+    }
+
+    private GetTransferResponse createDTO(Transfer transfer) {
+        return new GetTransferResponse(new GetTransferAssetDto(transfer.getAsset().getCreated(), transfer.getAsset().getUpdated(), transfer.getAsset().getId(), transfer.getAsset().getType(), transfer.getAsset().getName()), new GetTransferPaymentDto(transfer.getPayment().getId(), transfer.getPayment().getAmount(), transfer.getPayment().getType()), transfer.getType());
     }
 }
