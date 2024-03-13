@@ -27,7 +27,7 @@
             contentType: 'application/json',
             processData: false,
             success: function (data, status, jqXHR) {
-                document.getElementById("exampleInputEmail").value = data.amount;
+                document.getElementById("amount").innerText = data.amount + " TL";
                 sessionStorage.setItem("payment", JSON.stringify(data))
             },
 
