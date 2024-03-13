@@ -11,21 +11,37 @@
         ;
     });
 
-    $("#login-button").on('click', function (e) {
+    const assetType = {
+        "Document": "DOC",
+        "Photo": "PHOTO",
+        "Video": "VIDEO",
+        undefined: "DOC"
+    }
+
+    const file = document.getElementById("customFileLang").files[0];
+
+
+    $("#asset-confirm").on('click', function (e) {
+        const user = JSON.parse(sessionStorage.getItem("loggedUser"));
         const data = JSON.stringify({
-            identity: document.getElementById("exampleInputEmail").value,
-            password: document.getElementById("exampleInputPassword").value
+            type: assetType[document.getElementById("mySelect").value],
+            digitalUser: user.id,
+            name: document.getElementById("assetName").value,
+            description: document.getElementById("assetDesc").value,
+            content: "test"
         });
+
+
         $.ajax({
             type: "POST",
-            url: "api/start/login/v1",
+            url: "api/asset/create/v1",
             dataType: "json",
             contentType: 'application/json',
             processData: false,
             data: data,// now data come in this function
 
             success: function (data, status, jqXHR) {
-                window.location.href = "index.html";
+                console.log("başarıyla eklendi", data);
             },
 
             error: function (jqXHR, status) {

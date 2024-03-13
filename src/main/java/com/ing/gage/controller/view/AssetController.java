@@ -22,7 +22,7 @@ public class AssetController {
         this.assetService = assetService;
     }
 
-    @PostMapping(path = "create/v1", produces = "application/json")
+    @PostMapping(path = "create/v1")
     public CreatedAsset create(@RequestBody @Valid CreateAssetRequest loginRequest) {
         return assetService.create(loginRequest);
     }

@@ -46,6 +46,7 @@ public class LoginViewServiceImpl implements LoginViewService {
         digitalUser.setName(createUserRequest.getName());
         digitalUser.setPassword(createUserRequest.getPassword());
         digitalUser.setIdentity(createUserRequest.getIdentity());
+        digitalUser.setMail(createUserRequest.getMail());
         digitalUser.setDeleted(false);
         this.userRepository.save(digitalUser);
         return true;

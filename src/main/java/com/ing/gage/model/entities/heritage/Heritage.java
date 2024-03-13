@@ -15,12 +15,12 @@ public class Heritage extends Audit {
     private Long id;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "digital_owner_user_id")
     private DigitalUser digitalOwner;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "custodian_user_id")
     private DigitalUser custodianDigitalUser;
 

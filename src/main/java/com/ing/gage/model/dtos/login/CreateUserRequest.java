@@ -21,4 +21,7 @@ public class CreateUserRequest implements Serializable {
     Long identity;
     @NotBlank(message = "You have to type a password")
     String password;
+    @NotNull
+    @NotBlank(message = "You have to type a mail")
+    String mail;
 }

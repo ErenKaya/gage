@@ -25,6 +25,7 @@
             data: data,// now data come in this function
 
             success: function (data, status, jqXHR) {
+                sessionStorage.setItem("loggedUser", JSON.stringify(data));
                 window.location.href = "index.html";
             },
 

@@ -13,8 +13,8 @@ public class Asset extends Audit {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private DigitalUser digitalUser;
 
     private AssetType type;

@@ -14,7 +14,7 @@ public class Notification {
     private Long id;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private DigitalUser digitalUser;
 

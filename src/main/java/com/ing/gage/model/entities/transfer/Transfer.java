@@ -18,11 +18,11 @@ public class Transfer {
     private Long id;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "client_id")
     private DigitalUser broker;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "asset_id")
     private Asset asset;
 

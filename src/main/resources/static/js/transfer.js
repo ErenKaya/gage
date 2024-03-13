@@ -11,6 +11,11 @@
         ;
     });
 
+    $(document).ready(function () {
+        console.log("ready!");
+    });
+
+
     $("#login-button").on('click', function (e) {
         const data = JSON.stringify({
             identity: document.getElementById("exampleInputEmail").value,
