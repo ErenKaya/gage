@@ -27,7 +27,7 @@
             contentType: 'application/json',
             processData: false,
             success: function (data, status, jqXHR) {
-                document.getElementById("exampleInputEmail").value = data.amount;
+                document.getElementById("amount").innerText = data.amount + " TL";
                 sessionStorage.setItem("payment", JSON.stringify(data))
             },
 
@@ -41,14 +41,12 @@
 
     });
 
-    $("#login-button").on('click', function (e) {
-        const data = JSON.stringify({
-            identity: document.getElementById("exampleInputEmail").value,
-            password: document.getElementById("exampleInputPassword").value
-        });
+    const payment = function (e) {
+        const payment = JSON.parse(sessionStorage.getItem("payment"));
+        const data = JSON.stringify({id: payment.id, type: e})
         $.ajax({
             type: "POST",
-            url: "api/start/login/v1",
+            url: "api/payment/complete/v1",
             dataType: "json",
             contentType: 'application/json',
             processData: false,
@@ -64,6 +62,19 @@
                 alert('fail' + status.code);
             }
         });
+    };
+
+    $("#creditCardING").on('click', () => {
+        payment("CREDIT_CARD")
+    });
+
+    $("#creditCard").on('click', () => {
+        payment("CREDIT_CARD")
+    });
+
+
+    $("#transferWithIBAN").on('click', () => {
+        payment("TRANSFER")
     });
 
 
