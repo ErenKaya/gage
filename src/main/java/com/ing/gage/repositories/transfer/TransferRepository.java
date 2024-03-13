@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface TransferRepository extends JpaRepository<Transfer, Long> {
 
-    @Query("select h from Transfer h where h.id = ?1")
+    @Query("select h from Transfer h where h.broker.id = ?1")
     List<Transfer> findByTransferId(Long id);
 }
