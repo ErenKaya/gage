@@ -8,6 +8,7 @@ import java.io.Serializable;
 /**
  * DTO for {@link com.ing.gage.model.entities.heritage.Heritage}
  */
+
 @Value
 @Getter
 @Setter

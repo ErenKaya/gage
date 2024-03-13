@@ -25,7 +25,7 @@ public class Heritage extends Audit {
     private DigitalUser custodianDigitalUser;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "asset_id")
     private Asset asset;
 

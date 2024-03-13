@@ -18,5 +18,5 @@ import java.io.Serializable;
 public class CreatedHeritageCustodian implements Serializable {
     @NotNull(message = "Identity Must Be Filled")
     @NotBlank
-    Long identity;
+    Long id;
 }
