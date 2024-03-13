@@ -11280,3 +11280,11 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+
+.text-primaryGage {
+  color: #FF1212 !important;
+}
+
+.text-successGage {
+  color: #4DFF00 !important;
+}
