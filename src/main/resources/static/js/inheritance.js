@@ -10,22 +10,31 @@
         }
         ;
     });
+//assetList
 
-    $("#login-button").on('click', function (e) {
+
+    $(document).ready(function () {
+        const user = JSON.parse(sessionStorage.getItem("loggedUser"));
         const data = JSON.stringify({
-            identity: document.getElementById("exampleInputEmail").value,
-            password: document.getElementById("exampleInputPassword").value
+            digitalUser: user,
         });
         $.ajax({
             type: "POST",
-            url: "api/start/login/v1",
+            url: "api/asset/list/v1",
             dataType: "json",
             contentType: 'application/json',
             processData: false,
             data: data,// now data come in this function
 
             success: function (data, status, jqXHR) {
-                window.location.href = "index.html";
+
+                for (let i = 0; i < data.assetList.length; i++) {
+                    const item = data.assetList[i];
+                    document.getElementById("assetList").appendChild(new Option(item.name, item.id));
+
+                }
+                console.log("data", data)
+
             },
 
             error: function (jqXHR, status) {
@@ -34,6 +43,13 @@
                 alert('fail' + status.code);
             }
         });
+
+
+    });
+
+    $("#login-button").on('click', function (e) {
+
+
     });
 
 

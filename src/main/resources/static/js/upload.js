@@ -24,7 +24,7 @@
     $("#asset-confirm").on('click', function (e) {
         const user = JSON.parse(sessionStorage.getItem("loggedUser"));
         const data = JSON.stringify({
-            type: assetType[document.getElementById("mySelect").value],
+            type: assetType[document.getElementById("assetTypeList").value],
             digitalUser: user.id,
             name: document.getElementById("assetName").value,
             description: document.getElementById("assetDesc").value,
@@ -41,7 +41,7 @@
             data: data,// now data come in this function
 
             success: function (data, status, jqXHR) {
-                console.log("başarıyla eklendi", data);
+                alert("başarıyla tamamlandı", data)
             },
 
             error: function (jqXHR, status) {

@@ -27,7 +27,7 @@ public class AssetController {
         return assetService.create(loginRequest);
     }
 
-    @PostMapping(path = "list/v1", produces = "application/json")
+    @PostMapping(path = "list/v1")
     public AssetListResponse list(@RequestBody @Valid AssetListRequest loginRequest) {
         return assetService.list(loginRequest);
     }
