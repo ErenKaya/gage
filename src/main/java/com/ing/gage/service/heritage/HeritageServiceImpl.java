@@ -5,6 +5,7 @@ import com.ing.gage.model.dtos.heritage.create.CreateHeritageRequest;
 import com.ing.gage.model.dtos.heritage.create.CreatedHeritage;
 import com.ing.gage.model.dtos.heritage.get.GetHeritageRequest;
 import com.ing.gage.model.dtos.heritage.list.HeritageListRequest;
+import com.ing.gage.model.dtos.heritage.list.HeritageListResponse;
 import com.ing.gage.model.entities.asset.Asset;
 import com.ing.gage.model.entities.heritage.Heritage;
 import com.ing.gage.model.entities.user.DigitalUser;
@@ -30,9 +31,11 @@ public class HeritageServiceImpl implements HeritageService {
 
 
     @Override
-    public List<HeritageDTO> getHeritageListByOwnerUser(HeritageListRequest heritageListServiceRequest) {
+    public HeritageListResponse getHeritageListByOwnerUser(HeritageListRequest heritageListServiceRequest) {
         DigitalUser user = this.userRepository.findById(heritageListServiceRequest.getDigitalOwner().getId()).orElseThrow(NullPointerException::new);
-        return this.heritageRepository.findByDigitalOwnerId(user.getId()).stream().map(this::createDTO).toList();
+        HeritageListResponse response = new HeritageListResponse();
+        response.setAssetList(this.heritageRepository.findByDigitalOwnerId(user.getId()).stream().map(this::createDTO).toList());
+        return response;
     }
 
     @Override

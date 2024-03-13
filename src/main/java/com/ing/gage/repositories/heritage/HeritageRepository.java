@@ -9,5 +9,5 @@ import java.util.List;
 public interface HeritageRepository extends JpaRepository<Heritage, Long> {
 
     @Query("select h from Heritage h where h.digitalOwner.id = ?1")
-    List<Heritage> findByDigitalOwnerId(Long id);
+    List<Heritage>  findByDigitalOwnerId(Long id);
 }
