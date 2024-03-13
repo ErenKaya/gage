@@ -1,6 +1,7 @@
 package com.ing.gage.model.entities.transfer;
 
 import com.ing.gage.model.entities.asset.Asset;
+import com.ing.gage.model.entities.common.Audit;
 import com.ing.gage.model.entities.transfer.payment.Payment;
 import com.ing.gage.model.entities.user.DigitalUser;
 import com.ing.gage.model.enums.transfer.TransferType;
@@ -10,7 +11,7 @@ import java.time.OffsetDateTime;
 
 @Entity
 @Table(name = "transfer")
-public class Transfer {
+public class Transfer extends Audit {
 
     @Id
     @Column

@@ -23,6 +23,7 @@ import com.ing.gage.repositories.user.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -69,17 +70,19 @@ public class TransferServiceImpl implements TransferService {
     }
 
     private String getContent(Transfer savedTransfer) {
-        return String.format("Your order number %d has been placed, please visit http://localhost:8080/api/transfer/get/%d to purchase", savedTransfer.getId(), savedTransfer.getId());
+        return String.format("Your order number %d has been placed, please visit http://localhost:8080/payment.html?paymentId=%d to purchase", savedTransfer.getPayment().getId(), savedTransfer.getPayment().getId());
     }
 
     private String getTitle() {
         return "Order Created";
     }
 
+
+
     @Override
-    public GetTransferResponse get(Long transferId) {
-        Transfer transfer = this.transferRepository.findById(transferId).orElseThrow();
-        return new GetTransferResponse(new GetTransferAssetDto(transfer.getAsset().getCreated(), transfer.getAsset().getUpdated(), transfer.getAsset().getId(), transfer.getAsset().getType(), transfer.getAsset().getName()), new GetTransferPaymentDto(transfer.getPayment().getId(), transfer.getPayment().getAmount(), transfer.getPayment().getType()), transfer.getType());
+    public List<GetTransferResponse> getTransferByTransferId(Long transferId) {
+        DigitalUser user = this.userRepository.findById(transferId).orElseThrow(NullPointerException::new);
+        return this.transferRepository.findByTransferId(user.getId()).stream().map(this::createDTO).toList();
     }
 
     private CreateTransferResponse createTransferResponse(Transfer savedTransfer) {
@@ -103,5 +106,9 @@ public class TransferServiceImpl implements TransferService {
 
     private OffsetDateTime createTransferDate(OffsetDateTime transferDate) {
         return Objects.nonNull(transferDate) ? transferDate : OffsetDateTime.now();
+    }
+
+    private GetTransferResponse createDTO(Transfer transfer) {
+        return new GetTransferResponse(new GetTransferAssetDto(transfer.getAsset().getCreated(), transfer.getAsset().getUpdated(), transfer.getAsset().getId(), transfer.getAsset().getType(), transfer.getAsset().getName()), new GetTransferPaymentDto(transfer.getPayment().getId(), transfer.getPayment().getAmount(), transfer.getPayment().getType()), transfer.getType());
     }
 }

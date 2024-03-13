@@ -1,12 +1,13 @@
 package com.ing.gage.model.entities.notification;
 
+import com.ing.gage.model.entities.common.Audit;
 import com.ing.gage.model.entities.user.DigitalUser;
 import com.ing.gage.model.enums.notification.NotificationType;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "notification")
-public class Notification {
+public class Notification extends Audit {
 
     @Id
     @Column

@@ -11,6 +11,35 @@
         ;
     });
 
+    $(document).ready(function () {
+        const user = JSON.parse(sessionStorage.getItem("loggedUser"));
+        const data = JSON.stringify({
+            digitalUser: user,
+        });
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const paymentId = urlParams.get('paymentId');
+
+        $.ajax({
+            type: "GET",
+            url: "api/payment/get/v1?paymentId="+paymentId,
+            dataType: "json",
+            contentType: 'application/json',
+            processData: false,
+            success: function (data, status, jqXHR) {
+                console.log("data", data)
+            },
+
+            error: function (jqXHR, status) {
+                // error handler
+                console.log(jqXHR);
+                alert('fail' + status.code);
+            }
+        });
+
+
+    });
+
     $("#login-button").on('click', function (e) {
         const data = JSON.stringify({
             identity: document.getElementById("exampleInputEmail").value,
