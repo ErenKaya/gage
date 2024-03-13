@@ -11,8 +11,15 @@
         ;
     });
 
+    //assetList
+    const paymentType = {
+        "Free": "FREE",
+        "Paid": "PAID",
+    }
 
     $(document).ready(function () {
+        document.getElementById("transferDate").value = new Date().toISOString();
+
         const user = JSON.parse(sessionStorage.getItem("loggedUser"));
         const data = JSON.stringify({
             digitalUser: user,
@@ -43,7 +50,6 @@
             }
         });
 
-
         $.ajax({
             type: "GET",
             url: "api/user/list/v1",
@@ -71,33 +77,41 @@
 
     });
 
-    $("#inheritance-confirm").on('click', function (e) {
+
+    $("#sendAsset").on('click', function (e) {
         const user = JSON.parse(sessionStorage.getItem("loggedUser"));
-        const userSelect = document.getElementById("userList");
-        const userId = userSelect.options[userSelect.selectedIndex].value;
         const assetSelect = document.getElementById("assetList")
         const assetId = assetSelect.options[assetSelect.selectedIndex].value;
+
+        const userList = document.getElementById("userList")
+        const test = userList.options[userList.selectedIndex].text;
+
+        const typeList = document.getElementById("paymentTypeList")
+        const type = paymentType[typeList.options[typeList.selectedIndex].text];
         const data = {
-            custodianDigitalUser: {id: userId},
             asset: {id: assetId},
-            digitalOwner: {id: user.id},
-            note: document.getElementById("inheritanceDescription").value
+            broker: {id: user.id},
+            payment: {amount: document.getElementById("paymentAmount").value},
+            transferDate: document.getElementById("transferDate").value,
+            consumerMail: test,
+            type: type
+
         };
         const dataAsString = JSON.stringify(data);
 
         console.log(data);
 
         /**
-         *  DigitalUserDto digitalOwner;
-         *     CreatedHeritageCustodian custodianDigitalUser;
-         *     HeritageCreateAssetDto asset;
-         *     String note;
-
+         *     PaymentSellerDto payment;
+         *     @NotNull(message = "Transfer type must be filled")
+         *     TransferType type;
+         *     OffsetDateTime transferDate;
+         *     String consumerMail;
          */
 
         $.ajax({
             type: "POST",
-            url: "api/heritage/create/v1",
+            url: "api/transfer/create/v1",
             dataType: "json",
             contentType: 'application/json',
             processData: false,
@@ -113,8 +127,6 @@
                 alert('fail' + status.code);
             }
         });
-
-
     });
 
 

@@ -4,7 +4,7 @@ import com.ing.gage.model.dtos.asset.list.DigitalUserDto;
 import com.ing.gage.model.entities.transfer.Transfer;
 import com.ing.gage.model.enums.transfer.TransferType;
 import jakarta.validation.constraints.NotNull;
-import lombok.Value;
+import lombok.*;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -13,6 +13,11 @@ import java.time.OffsetDateTime;
  * DTO for {@link Transfer}
  */
 @Value
+@Getter
+@Setter
+@NoArgsConstructor(force = true)
+@AllArgsConstructor
+@Builder
 public class CreateTransferRequest implements Serializable {
     DigitalUserDto broker;
     CreateTransferAsset asset;

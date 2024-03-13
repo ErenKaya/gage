@@ -92,6 +92,7 @@ public class TransferServiceImpl implements TransferService {
         DigitalUser client = this.userRepository.findById(request.getBroker().getId()).orElseThrow();
         transfer.setAsset(asset);
         transfer.setBroker(client);
+        transfer.setType(request.getType());
         transfer.setConsumerMail(request.getConsumerMail());
         transfer.setTransferDate(this.createTransferDate(request.getTransferDate()));
         Payment payment = new Payment();
