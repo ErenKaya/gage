@@ -16,4 +16,5 @@ public class GetTransferAssetDto implements Serializable {
     Long id;
     AssetType type;
     String name;
+
 }
