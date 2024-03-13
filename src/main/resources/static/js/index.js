@@ -39,6 +39,7 @@
         $(document).ready(function () {
             const user = JSON.parse(sessionStorage.getItem("loggedUser"));
             const data = user.id;
+            document.getElementById("userName").innerText=user.name;
             $.ajax({
                 type: "POST",
                 url: "api/transfer/list/v1",
