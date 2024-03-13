@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>SB Admin 2 - Cards</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -29,7 +29,6 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <img class="img-fluid mt-5" style="width: 25rem;" src="img/ingage.png" </a> <!-- Divider -->
                 <hr class="sidebar-divider my-0">
@@ -51,7 +50,7 @@
             <!-- Nav Item - Charts -->
             <li class="nav-item active">
                 <a class="nav-link" href="upload.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fas fa-upload fa-chart-area"></i>
                     <span>Upload</span></a>
             </li>
 
@@ -73,11 +72,6 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Transfer</span></a>
             </li>
-
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
         </ul>
         <!-- End of Sidebar -->
 
@@ -273,93 +267,50 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container">
-
-                    <div class="card o-hidden border-0 shadow-lg my-5">
-                        <div class="card-body p-5">
-                            <div class="table-responsive">
-                                <table class="table table-striped text-successtable-border border-light">
-                                  <thead class="border-light">
-                                    <tr>
-                                      <th scope="col"></th>
-                                      <th scope="col"><strong>Basic</strong></th>
-                                      <th scope="col"><strong>Standard</strong></th>
-                                      <th scope="col"><strong>Premium</strong></th>
-                                      <th scope="col"><strong>Managed</strong></th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr>
-                                      <th scope="row">Storage</th>
-                                      <td>5</td>
-                                      <td>25 GB</td>
-                                      <td>100 GB</td>
-                                      <td>up to 5T</i></td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">Photo</th>
-                                      <td><i class="fas fa-xmark"></i></td>
-                                      <td><i class="fas fa-check"></i></td>
-                                      <td><i class="fas fa-check"></i></td>
-                                      <td><i class="fas fa-check"></i></td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">Video</th>
-                                      <td>X</td>
-                                      <td>X</td>
-                                      <td><i class="fas fa-check"></i></td>
-                                      <td><i class="fas fa-check"></i></td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">Speed</th>
-                                      <td>16 Mbps</td>
-                                      <td>25 Mbps</td>
-                                      <td>100 Mbps</td>
-                                      <td>500 Mbps</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">Backups</th>
-                                      <td>-</td>
-                                      <td><i class="fas fa-check"></i></td>
-                                      <td><i class="fas fa-check"></i></td>
-                                      <td><i class="fas fa-check"></i></td>
-                                    </tr>
-                                    <tr>
-                                      <td></td>
-                                      <td class="fw-bold">Free</td>
-                                      <td class="fw-bold">$99/mo</td>
-                                      <td class="fw-bold">$179/mo</td>
-                                      <td class="fw-bold"><a href>Contact us</a></td>
-                                    </tr>
-                                    <tr>
-                                      <th class=""></th>
-                                      <th class=""><button class="btn btn-primary">Subscribe</button></th>
-                                      <th class=""><button class="btn btn-primary">Subscribe</button></th>
-                                      <th class=""><button class="btn btn-primary">Subscribe</button></th>
-                                      <th class=""></th>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                              </div>
-                        </div> 
+                <div class="container-fluid">
+                 <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"></div></div></div><div class="row"><div class="col-sm-12"><table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                <thead>
+                                    <tr role="row"><th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 140px;">Name</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 217px;">Description</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 98px;">Type</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 41px;">Custodian</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 92px;">Note</th></tr>
+                                </thead>
+                                <tbody>
+                                <tr class="odd">
+                                        <td class="sorting_1">My Social Media Accounts</td>
+                                        <td>Username and password for Twitter,Facebook and Instagram account</td>
+                                        <td>Document</td>
+                                        <td>357473435743</td>
+                                        <td>Sana vasiyetimdir oğlum...</td>
+                                    </tr><tr class="even">
+                                        <td class="sorting_1">First birthday of my son</td>
+                                        <td>Best day of my life</td>
+                                        <td>Photo</td>
+                                        <td>35747343574347</td>
+                                        <td>Bu fotoğrafı sonsuza kadar sakla</td>
+                                    </tr></tbody>
+                            </table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite"></div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                            </div></div></div></div>
+                        </div>
                     </div>
-            
                 </div>
             </div>
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
-                    </div>
-                </div>
-            </footer>
+
             <!-- End of Main Content -->
 
-            <!-- Footer -->
 
-            <!-- End of Footer -->
 
         </div>
+                    <!-- Footer -->
+                    <footer class="sticky-footer bg-white">
+                        <div class="container my-auto">
+                            <div class="copyright text-center my-auto">
+                                <span>Copyright &copy; INGage 2024</span>
+                            </div>
+                        </div>
+                    </footer>
+            <!-- End of Footer -->
+
         <!-- End of Content Wrapper -->
 
     </div>
@@ -399,15 +350,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
-
-    <script src="js/membership.js"></script>
 
 </body>
 
