@@ -52,7 +52,7 @@ public class HeritageServiceImpl implements HeritageService {
         Heritage heritage = new Heritage();
         Asset asset = this.assetRepository.findById(request.getAsset().getId()).orElseThrow(NullPointerException::new);
         DigitalUser owner = this.userRepository.findById(request.getDigitalOwner().getId()).orElseThrow(NullPointerException::new);
-        DigitalUser custodian = this.userRepository.findById(request.getCustodianDigitalUser().getIdentity()).orElseThrow(NullPointerException::new);
+        DigitalUser custodian = this.userRepository.findById(request.getCustodianDigitalUser().getId()).orElseThrow(NullPointerException::new);
         heritage.setAsset(asset);
         heritage.setCustodianUser(custodian);
         heritage.setNote(request.getNote());

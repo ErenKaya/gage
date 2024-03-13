@@ -45,9 +45,75 @@
         });
 
 
+        $.ajax({
+            type: "GET",
+            url: "api/user/list/v1",
+            dataType: "json",
+            contentType: 'application/json',
+            processData: false,
+            success: function (data, status, jqXHR) {
+
+                for (let i = 0; i < data.userListItemList.length; i++) {
+                    const item = data.userListItemList[i];
+                    document.getElementById("userList").appendChild(new Option(item.mail, item.id));
+
+                }
+                console.log("data", data)
+
+            },
+
+            error: function (jqXHR, status) {
+                // error handler
+                console.log(jqXHR);
+                alert('fail' + status.code);
+            }
+        });
+
+
     });
 
-    $("#login-button").on('click', function (e) {
+    $("#inheritance-confirm").on('click', function (e) {
+        const user = JSON.parse(sessionStorage.getItem("loggedUser"));
+        const userSelect = document.getElementById("userList");
+        const userId = userSelect.options[userSelect.selectedIndex].value;
+        const assetSelect = document.getElementById("assetList")
+        const assetId = assetSelect.options[assetSelect.selectedIndex].value;
+        const data = {
+            custodianDigitalUser: {id: userId},
+            asset: {id: assetId},
+            digitalOwner: {id: user.id},
+            note: document.getElementById("inheritanceDescription").value
+        };
+        const dataAsString = JSON.stringify(data);
+
+        console.log(data);
+
+        /**
+         *  DigitalUserDto digitalOwner;
+         *     CreatedHeritageCustodian custodianDigitalUser;
+         *     HeritageCreateAssetDto asset;
+         *     String note;
+
+         */
+
+        $.ajax({
+            type: "POST",
+            url: "api/heritage/create/v1",
+            dataType: "json",
+            contentType: 'application/json',
+            processData: false,
+            data: dataAsString,// now data come in this function
+
+            success: function (data, status, jqXHR) {
+                alert("başarıyla tamamlandı", data)
+            },
+
+            error: function (jqXHR, status) {
+                // error handler
+                console.log(jqXHR);
+                alert('fail' + status.code);
+            }
+        });
 
 
     });
