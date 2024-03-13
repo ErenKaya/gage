@@ -36,6 +36,57 @@
         });
     });
 
+       $(document).ready(function () {
+        document.getElementById("Basic").classList.add('btn-success');
+        if(sessionStorage.getItem("membershipType") === "Standard"){
+                          document.getElementById("Standard").classList.add('btn-success');
+                          document.getElementById("Basic").classList.remove('btn-success');
+                          document.getElementById("Premium").classList.remove('btn-success');
+                          document.getElementById("Basic").classList.add('btn-primary');
+                          document.getElementById("Premium").classList.add('btn-primary');
+        }
+        else if(sessionStorage.getItem("membershipType") === "Premium"){
+                          document.getElementById("Premium").classList.add('btn-success');
+                          document.getElementById("Standard").classList.remove('btn-success');
+                          document.getElementById("Basic").classList.remove('btn-success');
+                          document.getElementById("Standard").classList.add('btn-primary');
+                          document.getElementById("Basic").classList.add('btn-primary');
+                          sessionStorage.setItem("membershipType", "Premium");
+        }
+            });
+
+     $("#Basic").on('click', function (e) {
+     debugger;
+        document.getElementById("Basic").classList.add('btn-success');
+        document.getElementById("Standard").classList.remove('btn-success');
+        document.getElementById("Premium").classList.remove('btn-success');
+        document.getElementById("Standard").classList.add('btn-primary');
+        document.getElementById("Premium").classList.add('btn-primary');
+        sessionStorage.setItem("membershipType", "Basic");
+        });
+
+      $("#Standard").on('click', function (e) {
+     debugger;
+
+         document.getElementById("Standard").classList.add('btn-success');
+         document.getElementById("Basic").classList.remove('btn-success');
+         document.getElementById("Premium").classList.remove('btn-success');
+         document.getElementById("Basic").classList.add('btn-primary');
+         document.getElementById("Premium").classList.add('btn-primary');
+         sessionStorage.setItem("membershipType", "Standard");
+         });
+
+      $("#Premium").on('click', function (e) {
+     debugger;
+
+         document.getElementById("Premium").classList.add('btn-success');
+         document.getElementById("Standard").classList.remove('btn-success');
+         document.getElementById("Basic").classList.remove('btn-success');
+         document.getElementById("Standard").classList.add('btn-primary');
+         document.getElementById("Basic").classList.add('btn-primary');
+         sessionStorage.setItem("membershipType", "Premium");
+         });
+
 
     // Close any open menu accordions when window is resized below 768px
     $(window).resize(function () {
