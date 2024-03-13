@@ -22,12 +22,13 @@
 
         $.ajax({
             type: "GET",
-            url: "api/payment/get/v1?paymentId="+paymentId,
+            url: "api/payment/get/v1?paymentId=" + paymentId,
             dataType: "json",
             contentType: 'application/json',
             processData: false,
             success: function (data, status, jqXHR) {
-                console.log("data", data)
+                document.getElementById("exampleInputEmail").value = data.amount;
+                sessionStorage.setItem("payment", JSON.stringify(data))
             },
 
             error: function (jqXHR, status) {

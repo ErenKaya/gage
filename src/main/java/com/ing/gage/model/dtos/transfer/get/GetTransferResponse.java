@@ -16,5 +16,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Builder
 public class GetTransferResponse implements Serializable {
+    GetTransferAssetDto asset;
     GetTransferPaymentDto payment;
+    TransferType type;
 }
